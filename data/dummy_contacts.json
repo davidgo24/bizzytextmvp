@@ -1,0 +1,16 @@
+{
+    "+16264665679": {
+      "owner_name": "David the Barber",
+      "clients": {
+        "Daniel Escobar": {
+          "phone": "+15559871234",
+          "last_appointment": "2025-05-19T15:00:00"
+        },
+        "Isaac Ibarra": {
+          "phone": "+15559871111",
+          "last_appointment": "2025-05-22T12:00:00"
+        }
+      }
+    }
+  }
+  
