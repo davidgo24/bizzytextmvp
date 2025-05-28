@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request
-from storage import load_contacts
+from storage import contacts, load_contacts
 from services.message_parser import process_message
 
 app = FastAPI()
@@ -16,9 +16,7 @@ async def simulate_inbound(request: Request):
     sender = body.get("From")
     message = body.get("Body")
 
-    print(f"📩 Incoming from {sender}: {message}")
-
-    # placeholder processing for now
-    parsed = process_message(sender, message)
+    owner_contacts = contacts.get(sender, {}).get("clients", {})
+    parsed = process_message(message, owner_contacts)
 
     return {"status": "received", "parsed": parsed}
