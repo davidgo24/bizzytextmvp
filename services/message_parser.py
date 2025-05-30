@@ -1,6 +1,10 @@
-import dateparser
-from datetime import datetime
+import re
+import dateparser  
+from datetime import datetime, timedelta
+from dateutil.parser import ParserError
 
+
+ 
 def parse_owner_message(message: str, contacts: dict):
     client_name = None
     client_phone = None
@@ -13,7 +17,10 @@ def parse_owner_message(message: str, contacts: dict):
             break
     
 
-    appointment_time = dateparser.parse(message, settings ={'PREFER_DATES_FROM': 'future'})
+    try:
+        appointment_time = dateparser.parse(message, fuzzy=True)
+    except (ParserError, TypeError, ValueError):
+        appointment_time = None
     intent = "reminder" if "remind" in message.lower() else "unknown"
 
     return {
@@ -27,9 +34,4 @@ def parse_owner_message(message: str, contacts: dict):
 
 
 
-def process_message(sender: str, message: str):
-    return {
-        "sender": sender,
-        "message": message,
-        "status": "parsed_placeholder"
-    }
+

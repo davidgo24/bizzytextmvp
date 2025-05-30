@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BizzyText - AI Texting Assistant</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: linear-gradient(135deg, #1a1c23, #21242d);
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: transparent;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    nav a {
+      font-size: 16px;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      padding: 20px 20px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero p {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
+
+    .visual-section {
+      text-align: center;
+      padding: 40px 20px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .visual-section img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 16px;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.5);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    input[type="tel"] {
+      padding: 18px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      outline: none;
+      background-color: #ffffff;
+      color: #111827;
+    }
+
+    button {
+      padding: 18px 20px;
+      font-size: 16px;
+      background: linear-gradient(90deg, #3b82f6, #2563eb);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #2563eb, #1e40af);
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 20px 30px;
+      }
+      .hero {
+        padding: 20px 20px 40px;
+      }
+      .hero p {
+        font-size: 20px;
+        margin-bottom: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">BizzyText📲</div>
+    <nav>
+      <a href="#">Sign In</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <p id="bizzy-text"></p>
+
+    <div class="visual-section">
+      <img src="images/BizzyTextExample.png" alt="BizzyText Demo">
+    </div>
+
+    <form>
+      <input type="tel" id="phone" name="phone" placeholder="" required>
+      <button type="submit">Start 17-Day Free Trial</button>
+    </form>
+  </div>
+
+  <script>
+    const input = document.getElementById("phone");
+    const text = "Enter your phone number";
+    let index = 0;
+  
+    function typeWriter() {
+      if (index <= text.length) {
+        input.setAttribute("placeholder", text.substring(0, index));
+        index++;
+        setTimeout(typeWriter, 80);
+      } else {
+        // Restart after short pause
+        setTimeout(() => {
+          index = 0;
+          typeWriter();
+        }, 1500);
+      }
+    }
+  
+    const bizzyTextEl = document.getElementById("bizzy-text");
+    const bizzyText = "Meet Bizzy — your texting champion 💬";
+    let bizzyIndex = 0;
+  
+    function typeBizzy() {
+      if (bizzyIndex <= bizzyText.length) {
+        bizzyTextEl.innerText = bizzyText.substring(0, bizzyIndex);
+        bizzyIndex++;
+        setTimeout(typeBizzy, 80);
+      }
+    }
+  
+    window.onload = () => {
+      typeWriter();
+      typeBizzy();
+    }
+  </script>
+  
+</body>
+</html>
